@@ -21,6 +21,7 @@ end
 
 SimpleCov.start do
   add_group 'Controllers', 'app/controllers'
+  add_group 'Domains', 'app/domains'
   add_group 'Repositories', 'app/repositories'
   add_group 'Models', 'app/models'
   add_group 'Libs', 'lib'
