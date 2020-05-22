@@ -8,12 +8,10 @@ class CreateLinks < ActiveRecord::Migration[6.0]
       t.timestamps
     end
     add_index :links, :identifier, unique: true
-    add_index :links, :destination_url, unique: true
   end
 
   def down
     remove_index :links, :identifier
-    remove_index :links, :destination_url
     drop_table :links
   end
 end
