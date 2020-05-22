@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2020_05_22_095633) do
     t.string "destination_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["destination_url"], name: "index_links_on_destination_url", unique: true
     t.index ["identifier"], name: "index_links_on_identifier", unique: true
   end
 
