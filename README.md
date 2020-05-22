@@ -1,4 +1,4 @@
-# Welcome to School project
+# Shortener
 
 ### Prerequisites
 
