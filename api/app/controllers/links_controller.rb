@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
 
   def create
-    @link = create_or_update_client.save
+    @link = create_link.save
 
     return render :create unless @link[:errors]
 
@@ -12,7 +12,7 @@ class LinksController < ApplicationController
 
   private
 
-    def create_or_update_client
+    def create_link
       Link::Create.new(
         link_params,
         LinkRepository
@@ -20,6 +20,8 @@ class LinksController < ApplicationController
     end
 
     def link_params
-      params.permit(:destination_url)
+      params
+        .require(:link)
+        .permit(:destination_url)
     end
 end

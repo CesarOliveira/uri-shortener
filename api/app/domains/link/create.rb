@@ -5,6 +5,6 @@ class Link::Create
   end
 
   def save
-
+    @link_repository.create(@params)
   end
 end
