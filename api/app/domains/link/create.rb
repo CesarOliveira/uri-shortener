@@ -5,7 +5,11 @@ class Link::Create
   end
 
   def save
-    @link_repository.create(@params.merge!(identifier: generate_unique_identifier))
+    ActiveRecord::Base.transaction do
+      @link_repository.create(@params.merge!(identifier: generate_unique_identifier))
+    end
+  rescue StandardError => e
+    { errors: e.message }
   end
 
   private
