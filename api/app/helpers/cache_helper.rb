@@ -1,5 +1,5 @@
 module CacheHelper
-  module_function
+  extend self
 
   def connected?
     ping unless Rails.cache.redis.connected?
@@ -14,10 +14,8 @@ module CacheHelper
   end
 
   def fetch(key, expires_in, &block)
-    if connected?
-      return Rails.cache.fetch(key, expires_in: expires_in) { block.call }
-    end
+    block.call unless connected?
 
-    block.call
+    Rails.cache.fetch(key, expires_in: expires_in) { block.call }
   end
 end
