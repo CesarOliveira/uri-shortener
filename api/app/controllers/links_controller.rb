@@ -1,5 +1,4 @@
 class LinksController < ApplicationController
-
   def create
     @link = create_link.save
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Links", type: :request do
+RSpec.describe 'Links', type: :request do
   describe 'Resquest to create new link' do
 
     let(:data) do

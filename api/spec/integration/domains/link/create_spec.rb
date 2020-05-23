@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Link::Create, type: :domain do
-  let!(:params) { { 'destination_url': Faker::Internet.url} }
+  let!(:params) { { 'destination_url': Faker::Internet.url } }
   let!(:link_repository) { double }
   let!(:identifier) { Faker::Lorem.characters(number: 4) }
 
@@ -42,19 +42,20 @@ RSpec.describe Link::Create, type: :domain do
       end
 
       it 'should return an error message ' do
-        is_expected.to eq({errors: error_message})
+        is_expected.to eq({ errors: error_message })
       end
     end
 
     context 'when identifier generated is already in use for other link' do
       let!(:other_identifier) { Faker::Lorem.characters(number: 5) }
-      let!(:increased_size_of_identifier) { initial_size_of_identifier + 1}
+      let!(:increased_size_of_identifier) { initial_size_of_identifier + 1 }
       let!(:data) { params.merge(identifier: other_identifier) }
 
       before do
         allow(link_repository).to receive(:find_by).with(identifier: identifier).and_return(true)
         allow(link_repository).to receive(:find_by).with(identifier: other_identifier).and_return(false)
-        allow(SecureRandom).to receive(:alphanumeric).with(increased_size_of_identifier).and_return(other_identifier)
+        allow(SecureRandom).to receive(:alphanumeric)
+          .with(increased_size_of_identifier).and_return(other_identifier)
         subject
       end
 
