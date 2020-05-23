@@ -22,4 +22,13 @@ Rails.application.configure do
   end
 
   config.active_record.dump_schema_after_migration = false
+
+  config.cache_store = :redis_store, {
+    host: ENV['REDIS_HOST'],
+    port: ENV['REDIS_PORT'],
+    db: ENV['REDIS_DB'],
+    password: ENV['REDIS_PASSWORD']
+  }, {
+    expires_in: 1.day
+  }
 end
