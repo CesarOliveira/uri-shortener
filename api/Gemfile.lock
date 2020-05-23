@@ -153,6 +153,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    redis (4.1.4)
     rexml (3.2.4)
     rspec-collection_matchers (1.2.0)
       rspec-expectations (>= 2.99.0.beta1)
@@ -228,6 +229,7 @@ DEPENDENCIES
   pry-rescue
   puma (~> 3.12.4)
   rails (~> 6.0.0)
+  redis
   rspec-collection_matchers
   rspec-rails
   rubocop
