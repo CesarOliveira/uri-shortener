@@ -3,7 +3,7 @@ class LinksController < ApplicationController
   def create
     @link = create_link.save
 
-    return render :create unless @link[:errors]
+    return render :create, status: :created unless @link[:errors]
 
     render json: @link, status: :unprocessable_entity
   rescue StandardError => e
