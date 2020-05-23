@@ -1,0 +1,88 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "link": {
+                "id": 13,
+                "title": null,
+                "destination_url": "http://google.com.br",
+                "shorted_link": "http://localhost:3001/sP1C"
+            }
+        }
+    ],
+    "required": [
+        "link"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "link": {
+            "$id": "#/properties/link",
+            "type": "object",
+            "title": "The link schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "id": 13,
+                    "title": null,
+                    "destination_url": "http://google.com.br",
+                    "shorted_link": "http://localhost:3001/sP1C"
+                }
+            ],
+            "required": [
+                "id",
+                "title",
+                "destination_url",
+                "shorted_link"
+            ],
+            "additionalProperties": true,
+            "properties": {
+                "id": {
+                    "$id": "#/properties/link/properties/id",
+                    "type": "integer",
+                    "title": "The id schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": 0,
+                    "examples": [
+                        13
+                    ]
+                },
+                "title": {
+                    "$id": "#/properties/link/properties/title",
+                    "type": "null",
+                    "title": "The title schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": null,
+                    "examples": [
+                        null
+                    ]
+                },
+                "destination_url": {
+                    "$id": "#/properties/link/properties/destination_url",
+                    "type": "string",
+                    "title": "The destination_url schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "http://google.com.br"
+                    ]
+                },
+                "shorted_link": {
+                    "$id": "#/properties/link/properties/shorted_link",
+                    "type": "string",
+                    "title": "The shorted_link schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "http://localhost:3001/sP1C"
+                    ]
+                }
+            }
+        }
+    }
+}
