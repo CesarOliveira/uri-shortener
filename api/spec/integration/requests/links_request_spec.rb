@@ -61,4 +61,56 @@ RSpec.describe 'Links', type: :request do
       end
     end
   end
+
+  describe 'Resquest to redirect a shorted link' do
+
+    let!(:link) { create(:link) }
+
+    before do
+      allow(CacheHelper).to receive(:connected?).and_return(false)
+    end
+
+    context 'when the shorted link exists' do
+      before do
+        get "/#{link.identifier}"
+      end
+
+      it 'must return status found and redirect' do
+        expect(response).to have_http_status(:found)
+      end
+
+      it 'must return status found and redirect' do
+        expect(response).to redirect_to(link.destination_url)
+      end
+    end
+
+    context 'when the shorted link does not exists' do
+      let!(:fake_identifier) { Faker::Lorem.characters(number: 10) }
+
+      before do
+        get "/#{fake_identifier}"
+      end
+
+      it 'must return status not_found' do
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context 'when an error occurs during redirect' do
+      let(:error_message) { Faker::Lorem.word }
+
+      before do
+        allow(Link::Find).to receive(:new).and_raise(StandardError, error_message)
+        get "/#{link.identifier}"
+      end
+
+      it 'must return status unprocessable_entity' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'must match json data error message' do
+        expect(JSON.parse(response.body)['errors']).to eq(error_message)
+      end
+    end
+  end
 end

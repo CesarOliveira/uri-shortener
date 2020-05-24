@@ -15,6 +15,8 @@ class LinksController < ApplicationController
     return render json: { message: 'Link not found' }, status: :not_found unless @link
 
     redirect_to @link.destination_url
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   private
