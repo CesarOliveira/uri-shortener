@@ -38,9 +38,6 @@ RSpec.describe LinkRepository, type: :repository do
 
     let!(:identifier) { Faker::Lorem.characters(number: 4) }
     let!(:data) { { identifier: identifier } }
-    let!(:redis) { double }
-    let!(:cache) { double }
-
 
     before do
       allow(CacheHelper).to receive(:connected?).and_return(false)
