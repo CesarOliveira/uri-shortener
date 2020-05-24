@@ -33,4 +33,24 @@ RSpec.describe LinkRepository, type: :repository do
       expect(Link).to have_received(:find_by).with(data)
     end
   end
+
+  describe '.find_by_identifier' do
+
+    let!(:identifier) { Faker::Lorem.characters(number: 4) }
+    let!(:data) { { identifier: identifier } }
+    let!(:redis) { double }
+    let!(:cache) { double }
+
+
+    before do
+      allow(CacheHelper).to receive(:connected?).and_return(false)
+      allow(Link).to receive(:find_by).with(data)
+
+      described_class.find_by_identifier(identifier)
+    end
+
+    it 'should call the identifier method on the Link model with the right data' do
+      expect(Link).to have_received(:find_by).with(data)
+    end
+  end
 end
