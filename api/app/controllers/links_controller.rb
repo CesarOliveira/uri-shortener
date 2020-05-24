@@ -9,6 +9,14 @@ class LinksController < ApplicationController
     render json: { errors: e.message }, status: :unprocessable_entity
   end
 
+  def redirect
+    @link = find_link(redirect_params).run
+
+    return render json: { message: 'Link not found' }, status: :not_found unless @link
+
+    redirect_to @link.destination_url
+  end
+
   private
 
     def create_link
@@ -18,9 +26,21 @@ class LinksController < ApplicationController
       )
     end
 
+    def find_link(params)
+      Link::Find.new(
+        params,
+        LinkRepository
+      )
+    end
+
     def link_params
       params
         .require(:link)
         .permit(:destination_url)
+    end
+
+    def redirect_params
+      params
+        .permit(:identifier)
     end
 end
