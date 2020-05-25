@@ -25,8 +25,9 @@ SimpleCov.start do
   add_group 'Helpers', 'app/helpers'
   add_group 'Repositories', 'app/repositories'
   add_group 'Models', 'app/models'
+  add_group 'Consumers', 'app/consumers'
+  add_group 'Publihsers', 'app/publishers'
   add_group 'Libs', 'lib'
-
 end
 
 Shoulda::Matchers.configure do |shoulda|
