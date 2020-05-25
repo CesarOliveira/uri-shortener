@@ -64,10 +64,24 @@ RSpec.describe 'Links', type: :request do
 
   describe 'Resquest to redirect a shorted link' do
 
-    let!(:link) { create(:link) }
+    let!(:link) { create(:link, id: 1, identifier: '1234') }
+    let(:date) { Time.new(3019, 11, 26, 14, 35, 0) }
+
+    let!(:data) do
+      {
+        link_id: link.id,
+        identifier: '8fb6ec35da080cc20febbc79a28cedc3'
+      }
+    end
+
+    let!(:secure_random) { '9fcf91615164273cff702d4c' }
 
     before do
       allow(CacheHelper).to receive(:connected?).and_return(false)
+      allow(Hutch).to receive(:connect)
+      allow(Hutch).to receive(:publish)
+      allow(Time).to receive(:now).and_return(date)
+      allow(SecureRandom).to receive(:hex).and_return(secure_random)
     end
 
     context 'when the shorted link exists' do
@@ -81,6 +95,17 @@ RSpec.describe 'Links', type: :request do
 
       it 'must return status found and redirect' do
         expect(response).to redirect_to(link.destination_url)
+      end
+
+
+      it 'should connect in hutch' do
+        expect(Hutch).to have_received(:connect)
+      end
+
+      it 'should publish in queue to process the hit' do
+        expect(Hutch).to(
+          have_received(:publish).with('hit.create', subject: data)
+        )
       end
     end
 
