@@ -16,5 +16,7 @@ module Api
     config.api_only = true
 
     config.autoload_paths << Rails.root.join('app', 'domains', 'repositories')
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
   end
 end
