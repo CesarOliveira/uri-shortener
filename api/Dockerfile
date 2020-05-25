@@ -14,4 +14,6 @@ RUN chmod +x ./post-up.sh
 
 CMD sh /app/post-up.sh
 
+RUN hutch
+
 EXPOSE 3000
