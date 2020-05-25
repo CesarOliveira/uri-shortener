@@ -19,6 +19,7 @@ services:
       - postgres
       - redis
     links:
+      - rabbitmq
       - postgres
       - redis
 
