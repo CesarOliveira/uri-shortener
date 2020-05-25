@@ -1,4 +1,4 @@
 rm -f tmp/pids/server.pid
 bundle install --quiet
-rails s -b 0.0.0.0 -p 3000 &
-ruby hutch_startup.rb
+nohup hutch &
+rails s -b 0.0.0.0 -p 3000
