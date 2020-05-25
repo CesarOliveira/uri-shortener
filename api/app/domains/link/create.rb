@@ -6,8 +6,10 @@ class Link::Create
 
   def save
     ActiveRecord::Base.transaction do
-      @link_repository.create(@params.merge!(identifier: generate_unique_identifier))
+      @link = @link_repository.create(@params.merge!(identifier: generate_unique_identifier))
+      set_link_title
     end
+    @link
   rescue StandardError => e
     { errors: e.message }
   end
@@ -20,5 +22,9 @@ class Link::Create
       return unique_hash unless @link_repository.find_by(identifier: unique_hash)
 
       generate_unique_identifier(size_hash + 1)
+    end
+
+    def set_link_title
+      LinkSetTitlePublisher.run(@link.id)
     end
 end
