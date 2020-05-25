@@ -18,6 +18,8 @@ class LinksController < ApplicationController
 
     set_accessed_cookie_identifier
 
+    hit_link
+
     redirect_to @link.destination_url
   rescue StandardError => e
     render json: { errors: e.message }, status: :unprocessable_entity
@@ -55,9 +57,12 @@ class LinksController < ApplicationController
       set_cookie unless @accessed_cookie_value
     end
 
-
     def set_cookie
       @accessed_cookie_value = generate_unique_token(@link.identifier)
       cookies["accessed_cookie_#{@link.id}"] = { :value => @accessed_cookie_value, :expires => Time.now + 1.month}
+    end
+
+    def hit_link
+      HitCreatePublisher.run(@link.id, @accessed_cookie_value)
     end
 end
