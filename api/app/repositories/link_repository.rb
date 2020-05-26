@@ -2,6 +2,14 @@ module LinkRepository
   extend self
   include CacheHelper
 
+  def find(id)
+    Link.find(id)
+  end
+
+  def update(link, params)
+    link.update(params)
+  end
+
   def create(params)
     Link.create!(params)
   end
