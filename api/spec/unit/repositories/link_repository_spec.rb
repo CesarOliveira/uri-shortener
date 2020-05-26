@@ -34,6 +34,17 @@ RSpec.describe LinkRepository, type: :repository do
     end
   end
 
+  describe '.update' do
+    before do
+      allow(link).to receive(:update)
+      described_class.update(link, data)
+    end
+
+    it 'should call the update method on the Link model' do
+      expect(link).to have_received(:update).with(data)
+    end
+  end
+
   describe '.find' do
     let!(:id) { Faker::Lorem.characters(number: 4) }
 
