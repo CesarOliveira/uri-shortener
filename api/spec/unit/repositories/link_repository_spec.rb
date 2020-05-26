@@ -34,6 +34,20 @@ RSpec.describe LinkRepository, type: :repository do
     end
   end
 
+  describe '.find' do
+    let!(:id) { Faker::Lorem.characters(number: 4) }
+
+    before do
+      allow(Link).to receive(:find)
+
+      described_class.find(id)
+    end
+
+    it 'should call the find method on the Link model with the right data' do
+      expect(Link).to have_received(:find).with(id)
+    end
+  end
+
   describe '.find_by_identifier' do
 
     let!(:identifier) { Faker::Lorem.characters(number: 4) }
