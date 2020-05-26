@@ -23,4 +23,8 @@ module LinkRepository
       Link.find_by(identifier: identifier)
     end
   end
+
+  def links_hits
+    Link.count_hits
+  end
 end
