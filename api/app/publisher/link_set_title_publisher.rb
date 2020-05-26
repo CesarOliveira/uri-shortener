@@ -4,10 +4,6 @@ module LinkSetTitlePublisher
   def run(link_id)
     Hutch.connect
 
-    data = {
-      link_id: link_id
-    }
-
-    Hutch.publish('link.set.title', subject: data)
+    Hutch.publish('link.set.title', { link_id: link_id} )
   end
 end
