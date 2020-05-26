@@ -25,6 +25,12 @@ class LinksController < ApplicationController
     render json: { errors: e.message }, status: :unprocessable_entity
   end
 
+  def hits
+    @links_hits = LinkRepository.links_hits
+
+    render json: @links_hits
+  end
+
   private
 
     def create_link
