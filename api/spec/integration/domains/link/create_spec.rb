@@ -6,7 +6,7 @@ RSpec.describe Link::Create, type: :domain do
   let!(:identifier) { Faker::Lorem.characters(number: 4) }
 
   let!(:initial_size_of_identifier) { ENV['INITIAL_SIZE_OF_HASH'].to_i }
-
+  let!(:crated_link) { create(:link) }
   let!(:create_domain) do
     described_class.new(params, link_repository)
   end
@@ -17,8 +17,9 @@ RSpec.describe Link::Create, type: :domain do
 
     before do
       allow(SecureRandom).to receive(:alphanumeric).with(initial_size_of_identifier).and_return(identifier)
-      allow(link_repository).to receive(:create)
+      allow(link_repository).to receive(:create).and_return(crated_link)
       allow(link_repository).to receive(:find_by)
+      allow(LinkSetTitlePublisher).to receive(:run)
     end
 
     context 'when shorted link is created' do
@@ -31,6 +32,10 @@ RSpec.describe Link::Create, type: :domain do
 
       it 'should call create on LinkRepository with the right data' do
         expect(link_repository).to have_received(:create).with(data)
+      end
+
+      it 'should call run on LinkSetTitlePublisher with the right data' do
+        expect(LinkSetTitlePublisher).to have_received(:run).with(crated_link.id)
       end
     end
 
