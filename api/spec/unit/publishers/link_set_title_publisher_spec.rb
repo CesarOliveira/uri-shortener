@@ -25,7 +25,7 @@ RSpec.describe LinkSetTitlePublisher, type: :publishers do
 
     it 'publish in queue' do
       expect(Hutch).to(
-        have_received(:publish).with('link.set.title', subject: data)
+        have_received(:publish).with('link.set.title', data)
       )
     end
   end
