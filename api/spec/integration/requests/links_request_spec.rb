@@ -14,6 +14,7 @@ RSpec.describe 'Links', type: :request do
     context 'when send with the right data' do
 
       before do
+        allow(LinkSetTitlePublisher).to receive(:run)
         post '/api/links', params: data
       end
 
@@ -25,6 +26,9 @@ RSpec.describe 'Links', type: :request do
         expect(response).to match_json_schema('links/create')
       end
 
+      it 'should call run on LinkSetTitlePublisher with the right data' do
+        expect(LinkSetTitlePublisher).to have_received(:run).with(JSON.parse(response.body)['link']['id'])
+      end
     end
 
     context 'when send with the wrong data' do
