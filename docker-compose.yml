@@ -46,3 +46,16 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+
+  client:
+    stdin_open: true
+    tty: true
+    container_name: client
+    build:
+      context: ./client
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./client:/app
+    env_file:
+      ./config/client.env
