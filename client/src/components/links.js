@@ -3,7 +3,7 @@ import React from 'react'
 const Links = ({links}) => {
   return (
       <div>
-        <center><h1>Most Accessed Link</h1></center>
+        <center><h1>Most Accessed Links</h1></center>
 
         <div class="row">
         <div class="col-lg-12">
@@ -24,7 +24,7 @@ const Links = ({links}) => {
                   <th scope="row">{link.id}</th>
                   <td>{link.title}</td>
                   <td>
-                    <a target="_blank" href={`http://shortener.cesaroliveira.com.br/${link.identifier}`}>http://shortener.cesaroliveira.com.br/{link.identifier}</a>
+                    <a target="_blank" rel="noopener noreferrer" href={`http://shortener.cesaroliveira.com.br/${link.identifier}`}>http://shortener.cesaroliveira.com.br/{link.identifier}</a>
                   </td>
                   <td>{link.destination_url}</td>
                   <td>{link.total_hits}</td>

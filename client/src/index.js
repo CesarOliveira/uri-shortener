@@ -2,12 +2,40 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Links from './Links';
+
 import * as serviceWorker from './serviceWorker';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <div>
+      <ul>
+        <li>
+          <Link to="/">New Shortened Link</Link>
+        </li>
+        <li>
+          <Link to="/links">Links</Link>
+        </li>
+      </ul>
+
+      <hr />
+      <Switch>
+        <Route exact path="/">
+          <App />
+        </Route>
+        <Route path="/links">
+          <Links />
+        </Route>
+      </Switch>
+    </div>
+  </Router>,
   document.getElementById('root')
 );
 
