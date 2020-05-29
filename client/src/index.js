@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Links from './Links';
+import Create from './Create';
 
 import * as serviceWorker from './serviceWorker';
 import {
@@ -28,7 +29,7 @@ ReactDOM.render(
       <hr />
       <Switch>
         <Route exact path="/">
-          <App />
+          <Create />
         </Route>
         <Route path="/links">
           <Links />
