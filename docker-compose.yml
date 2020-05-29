@@ -11,6 +11,8 @@ services:
         - ruby:2.6.4-alpine
     env_file:
       - ./config/api.env
+    ports:
+      - "3001:3000"
     volumes:
       - ./api:/app
     depends_on:
@@ -31,8 +33,6 @@ services:
       - SERVICE_TYPE=worker
     env_file:
       - ./config/api.env
-    ports:
-      - "3001:3000"
     volumes:
       - ./api:/app
     depends_on:
