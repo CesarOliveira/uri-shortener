@@ -81,3 +81,16 @@ services:
       - ./client:/app
     env_file:
       ./config/client.env
+
+  proxy.local:
+    container_name: shortener-proxy
+    image: shortener-proxy
+    image: nginx
+    volumes:
+      - ./services/proxy/conf.d:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+    environment:
+      NGINX_PORT: 80
+    depends_on:
+      - api-shortener
