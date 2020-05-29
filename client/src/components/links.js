@@ -24,7 +24,7 @@ const Links = ({links}) => {
                   <th scope="row">{link.id}</th>
                   <td>{link.title}</td>
                   <td>
-                    <a target="_blank" rel="noopener noreferrer" href={`http://shortener.cesaroliveira.com.br/${link.identifier}`}>http://shortener.cesaroliveira.com.br/{link.identifier}</a>
+                    <a target="_blank" rel="noopener noreferrer" href={`http://api-shortener.local/${link.identifier}`}>http://api-shortener.local/{link.identifier}</a>
                   </td>
                   <td>{link.destination_url}</td>
                   <td>{link.total_hits}</td>

@@ -36,15 +36,16 @@ import axios from 'axios';
                     name="destination_url"
                     value={destination_url}
                     onChange={this.onChange}
+                    placeholder="Type the link you want to short"
                   />
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Shorten</button>
               </form>
             </div>
             <br/>
             {shorted_link && (
             <div class="alert alert-primary" role="alert">
-              Here is you shortened URL: <a href="{shorted_link}">{shorted_link}</a>
+              Here is you shortened URL: <a target="_blank" rel="noopener noreferrer" href={`shorted_link`}> {shorted_link}</a>
             </div>
             )}
           </div>
