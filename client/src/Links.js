@@ -13,7 +13,7 @@ class App extends Component {
     };
 
     componentDidMount() {
-        fetch('http://shortener.cesaroliveira.com.br/api/links/hits')
+        fetch('http://localhost:3001/api/links/hits')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ links: data })

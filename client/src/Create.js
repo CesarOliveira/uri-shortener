@@ -17,7 +17,7 @@ import axios from 'axios';
       e.preventDefault();
       const { destination_url } = this.state;
 
-      axios.post('http://shortener.cesaroliveira.com.br/api/links', { link: { destination_url } })
+      axios.post('http://localhost:3001/api/links', { link: { destination_url } })
         .then((result) => {
           //access the results here....
         });
