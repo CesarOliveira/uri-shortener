@@ -45,7 +45,7 @@ import axios from 'axios';
             <br/>
             {shorted_link && (
             <div class="alert alert-primary" role="alert">
-              Here is you shortened URL: <a target="_blank" rel="noopener noreferrer" href={`shorted_link`}> {shorted_link}</a>
+              Here is you shortened URL: <a target="_blank" rel="noopener noreferrer" href={shorted_link}> {shorted_link}</a>
             </div>
             )}
           </div>
