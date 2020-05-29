@@ -7,8 +7,8 @@ class Link::Create
   def save
     ActiveRecord::Base.transaction do
       @link = @link_repository.create(@params.merge!(identifier: generate_unique_identifier))
-      set_link_title
     end
+    set_link_title
     @link
   rescue StandardError => e
     { errors: e.message }
