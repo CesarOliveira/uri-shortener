@@ -16,17 +16,22 @@ import {
 
 ReactDOM.render(
   <Router>
-    <div>
-      <ul>
-        <li>
-          <Link to="/">New Shortened Link</Link>
-        </li>
-        <li>
-          <Link to="/links">Links</Link>
-        </li>
-      </ul>
-
-      <hr />
+    <div class="col-md-12">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">New Shortened Link</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/links">Most Accessed Links</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="jumbotron">
       <Switch>
         <Route exact path="/">
           <Create />
